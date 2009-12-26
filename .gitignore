@@ -2,3 +2,4 @@
 *.pyc
 *.swp
 settings.py
+db/db.sqlite3
