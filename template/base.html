@@ -1,0 +1,29 @@
+{% comment %}
+vim:ft=htmldjango ts=3 sw=3 et
+{% endcomment %}
+<html>
+   <head>
+      <title>EighthBit: {% block title %}home{% endblock %}</title>
+      <link rel="stylesheet" href="/media/blueprint/screen.css" type="text/css" media="screen, projection" />
+      <link rel="stylesheet" href="/media/blueprint/print.css" type="text/css" media="print" />
+      <!--[if lt IE 8]>
+         <link rel="stylesheet" href="/media/blueprint/ie.css" type="text/css" media="screen, projection" />
+      <![endif]-->
+   </head>
+   <body>
+      <div class="container">
+         <div class="span-24">
+            <h1>EighthBit</h1>
+            <h3>{% block subtitle %}subtitle{% endblock %}</h3>
+            <hr />
+            {% for link in links %}
+               <a href="{{ link.href }}">{{ link.text }}</a>
+               {% if not forloop.last %} | {% endif %}
+            {% endfor %}
+            {% block content %}
+               ...
+            {% endblock %}
+         </div>
+      </div>
+   </body>
+</html>
