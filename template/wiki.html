@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block title %}EighthBit Wiki{% endblock %}
+{% block h1title %}{{ wiki.title }}{% endblock %}
+{% block subtitle %}<a href="{{ wiki.url }}">{{ wiki.url }}</a>{% endblock %}
+{% block content %}{{ wiki.contents }}{% endblock %}
