@@ -80,7 +80,8 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'south', # Database Migrations
     'general',
-    'wiki',
     'roadmap',
+    'wiki',
 )
