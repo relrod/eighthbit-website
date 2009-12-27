@@ -1,0 +1,19 @@
+Here is a list of LDAP backends for django that I've found.
+
+-------------------------------------------------------------------
+http://code.djangoproject.com/ticket/11526  <<  Will probably use this unless I find a real reason not to.
+   Looks nice, and has full documentation. Uses python-ldap. Requires patching Django. It is
+   on PyPi so maybe we could easy_install it. This adds a User() entry when a user logs in, and
+   updates it on each login. So users can be interacted with like real Django User() objects.
+-------------------------------------------------------------------
+http://www.amherst.k12.oh.us/django-ldap.html
+   This one looks like it was done for proof of concept. It seems a bit 'hackish'. But it looks
+   like it gets the job done.
+-------------------------------------------------------------------
+http://www.djangosnippets.org/snippets/501/
+   This one does LDAP Auth. That's all it does. No more, no less. Just the bare necessities.
+-------------------------------------------------------------------
+http://opensource.bolloretelecom.eu/projects/django-ldapdb/
+   This takes LDAP objects and makes them work as Django objects. They are easy to update, add,
+   delete, etc. because they are just seen as regular Django model entries. If it is possible to
+   update from the site, we will probably use this.
