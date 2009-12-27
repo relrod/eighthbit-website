@@ -15,11 +15,13 @@ vim:ft=htmldjango ts=3 sw=3 et
          <div class="span-24">
             <h1>{% block h1title %}title{% endblock %}</h1>
             <h3>{% block subtitle %}subtitle{% endblock %}</h3>
-            <hr />
             {% for link in links %}
                <a href="{{ link.href }}">{{ link.text }}</a>
                {% if not forloop.last %} | {% endif %}
             {% endfor %}
+            <hr />
+         </div>
+         <div class="span-24">
             {% block content %}
                ...
             {% endblock %}
