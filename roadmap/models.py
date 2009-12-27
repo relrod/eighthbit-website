@@ -19,18 +19,8 @@ class Stopsign(models.Model):
    description = models.TextField("Extra Details")
    project = models.ManyToManyField(Project)
    version = models.ManyToManyField(Version)
+   done = models.BooleanField("Accomplished")
 
    def __unicode__(self):
       return "[%s] %s" % (self.project, self.what)
-
-class Roadbump(models.Model):
-   what = models.CharField("What is the problem", max_length=255)
-   description = models.TextField("Extra Details")
-   project = models.ManyToManyField(Project)
-   stopsign = models.ManyToManyField(Stopsign)
-   oldversion = models.ForeignKey(Version, related_name="old_version")
-   newversion = models.ForeignKey(Version, related_name="new_version")
-
-   def __unicode__(self):
-      return "[%s] %s - %s -> %s" % (self.project, self.what, self.oldversion, self.newversion)
 
