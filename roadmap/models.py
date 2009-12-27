@@ -1,6 +1,7 @@
 from django.db import models
 
 PERCENTS = (
+   ("0","0"),
    ("10","10"), ("20","20"), ("30","30"),
    ("40","40"), ("50","50"), ("60","60"),
    ("70","70"), ("80","80"), ("90","90"),
@@ -9,6 +10,7 @@ PERCENTS = (
 
 STATUSES = (
       ("In Progress/Assigned", "In Progress/Assigned"),
+      ("Needs Done - Not Started", "Needs Done- Not Started"),
       ("Excluded/Not Happening", "Excluded/Not Happening"),
       ("Committed/Completed", "Committed/Completed"),
       ("On Hold - Waiting for Feedback", "On Hold - Waiting for Feedback"),
