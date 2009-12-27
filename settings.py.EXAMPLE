@@ -82,4 +82,5 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'general',
     'wiki',
+    'roadmap',
 )
