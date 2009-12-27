@@ -8,10 +8,10 @@ PERCENTS = (
 )
 
 STATUSES = (
-      ("in_progress", "In Progress/Assigned"),
-      ("excluded", "Excluded/Not Happening"),
-      ("committed", "Committed/Completed"),
-      ("hold", "On Hold - Waiting for Feedback"),
+      ("In Progress/Assigned", "In Progress/Assigned"),
+      ("Excluded/Not Happening", "Excluded/Not Happening"),
+      ("Committed/Completed", "Committed/Completed"),
+      ("On Hold - Waiting for Feedback", "On Hold - Waiting for Feedback"),
 )
 
 class Project(models.Model):
@@ -31,11 +31,10 @@ class Version(models.Model):
 class Stopsign(models.Model):
    what = models.CharField("What is going to happen", max_length=255)
    description = models.TextField("Extra Details")
-   project = models.ManyToManyField(Project)
+   project = models.ForeignKey(Project)
    version = models.ManyToManyField(Version)
    percent = models.CharField("Percent Complete", choices=PERCENTS, max_length=3)
    status = models.CharField("Current Status", choices=STATUSES, max_length=20)
 
    def __unicode__(self):
-      return "[%s : %s] %s" % (self.project, self.status, self.what)
-
+      return "[%s -> %s] %s" % (self.project.name, self.status, self.what)
