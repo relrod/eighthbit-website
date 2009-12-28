@@ -5,6 +5,12 @@
 {% block subtitle %}Login{% endblock %}
 {% block content %}
 <p>
+<center>
+   {% if form.errors %}
+   <div class="error">
+      Invalid username/password combination. Please try again.
+   </div>
+   {% endif %}
    <form action="" method="POST">
       <label for="username">Username:</label>
       <input type="text" name="username" value="" id="username" />
@@ -15,5 +21,6 @@
       <input type="submit" value="login" />
       <input type="hidden" name="next" value="{{ next|escape }}" />
    </form>
+</center>   
 </p>
 {% endblock %}
