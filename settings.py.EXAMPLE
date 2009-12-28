@@ -18,6 +18,17 @@ DATABASE_PASSWORD = ''
 DATABASE_HOST = ''
 DATABASE_PORT = ''
 
+
+AUTHENTICATION_BACKENDS = (
+   'django_auth_ldap.backend.LDAPBackend',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+AUTH_LDAP_SERVER_URI = "ldap://localhost:3389"
+
+AUTH_LDAP_USER_DN_TEMPLATE = "uid=%(user)s,dc=eighthbit,dc=net"
+
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
