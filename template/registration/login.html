@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}login{% endblock %}
+{% block h1title %}EighthBit IRC{% endblock %}
+{% block subtitle %}Login{% endblock %}
+{% block content %}
+<p>
+   <form action="" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" name="username" value="" id="username" />
+
+      <label for="password">Password:</label>
+      <input type="password" name="password" value="" id="password" />
+
+      <input type="submit" value="login" />
+      <input type="hidden" name="next" value="{{ next|escape }}" />
+   </form>
+</p>
+{% endblock %}
