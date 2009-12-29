@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Quote #{{ quote.id }}{% endblock %}
+{% block h1title %}Quote #{{ quote.id }} by {{quote.submitter }}{% endblock %}
+{% block subtitle %}{% endblock %}
+{% block content %}
+<p>
+<center>
+   <h3>
+      {{ quote.contents|linebreaks }} <br /> 
+   </h3>
+   <h4>
+      {{ quote.comment|linebreaks }} <br /> 
+   </h4>
+</center>   
+</p>
+{% endblock %}

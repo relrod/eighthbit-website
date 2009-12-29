@@ -6,3 +6,4 @@ db/db.sqlite3
 
 #for lisp
 *.fasl
+/scripts/lisp/config.lisp
