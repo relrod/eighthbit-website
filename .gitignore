@@ -3,3 +3,6 @@
 *.swp
 settings.py
 db/db.sqlite3
+
+#for lisp
+*.fasl
