@@ -44,3 +44,9 @@ Defautls to an empty string which means no pass.")
 
 (defparameter *ldap* (make-8b-ldap))
 
+(defmacro with-ldap (ldap &body body)
+  "Execute BODY in the context of LDAP bound to the ldap server."
+  `(prog2
+       (ldap:bind ,ldap)
+       (progn ,@body)
+     (ldap:unbind ,ldap)))
