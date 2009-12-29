@@ -1,0 +1,9 @@
+Lisp related things. Right now the only thing in here is ldap.lisp and
+if you make it config.lisp
+
+Use config.lisp to change some of the defaults that ldap.lisp uses. For
+example:
+
+ (setq *default-host* "lappy")
+
+If config.lisp does not exist, nothing exciting happens.
