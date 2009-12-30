@@ -10,6 +10,7 @@ urlpatterns = patterns('',
    (r'^wiki/(?P<Title>.*)$', "wiki.views.showpage"),
    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
    (r'^qdb/quote/(?P<id>.*)$', "qdb.views.showquote"),
+   (r'^qdb/addquote/', "qdb.views.addquote"),
    (r'^login/$', login),
    (r'^logout/$', logout),
 )
