@@ -16,7 +16,10 @@ def list(request, page):
    return render_to_response("qdb/list.html", {"quotes" : quotepage})
 
 def showquote(request, id):
-   quote = get_object_or_404(Quote, id=id, approved=1)
+   if id == "random":
+      quote = Quote.objects.all().order_by('?')[:1].get()
+   else:
+      quote = get_object_or_404(Quote, id=id, approved=1)
    return render_to_response('qdb/quote.html', {'quote' : quote})
 
 def addquote(request):

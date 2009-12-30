@@ -15,6 +15,7 @@ urlpatterns = patterns('',
    
    # QDB:
    (r'^qdb/quote/(?P<id>.*)$', "qdb.views.showquote"),
+   (r'^qdb/random/$', "qdb.views.showquote", {"id": "random"}),
    (r'^qdb/add/$', "qdb.views.addquote"),
    (r'^qdb/addquote/$', "qdb.views.addquote"),
    (r'^qdb/list/(?P<page>\d+)$', "qdb.views.list"),
