@@ -95,4 +95,5 @@ INSTALLED_APPS = (
     'general',
     'roadmap',
     'wiki',
+    'qdb',
 )
