@@ -26,16 +26,11 @@ def addquote(request):
    if request.method == 'POST':
       form = AddQuote(request.POST)
       if form.is_valid():
-         newquote = Quote()
-         data = form.cleaned_data
-         newquote.score = 0
-         newquote.submitter = data['submitter']
-         newquote.contents = data['contents']
-         if data['comment']: 
-            newquote.comment = data['comment']
-         newquote.approved = 0
-         newquote.save()
-         #return HttpResponseRedirect('../quote/' + str(newquote.id))
+         initial = form.save(commit=False)
+         initial.approved = 0
+         initial.score = 0
+         initial.save()
+         form.save_m2m()
          form = AddQuote()
          return render_to_response('qdb/addquote.html', { 'form' : form, 'saved' : True })
       else:
