@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Quotes Listing (page {{ quotes.number }}){% endblock %}
+{% block sublinks %}{% include "qdb/links.html" %}{% endblock %}
+{% block content %}
+   <br />
+   <p align="right">
+   {% if quotes.has_previous %}
+      <a href="/qdb/list/{{quotes.previous_page_number}}">&laquo;</a>
+   {% endif %}
+   page {{ quotes.number }} of {{ quotes.paginator.num_pages }}
+   {% if quotes.has_next %}
+      <a href="/qdb/list/{{quotes.next_page_number}}">&raquo;</a>
+   {% endif %}
+
+   {% for quote in quotes.object_list %}
+   <h3>
+      <blockquote class="success">
+         {{ quote.contents|linebreaks }} <br />
+      </blockquote>
+   </h3>
+   {% endfor %}
+</center>   
+{% endblock %}
