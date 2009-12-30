@@ -14,10 +14,13 @@
    {% endif %}
 
    {% for quote in quotes.object_list %}
-   <h3>
-      <blockquote class="success">
+   <h3 class="success">
+      <blockquote>
          {{ quote.contents|linebreaks }} <br />
       </blockquote>
+      {% if quote.comment %}
+         Comment: {{ quote.comment }}
+      {% endif %}
    </h3>
    {% endfor %}
 </center>   
