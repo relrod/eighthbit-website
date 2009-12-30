@@ -15,6 +15,9 @@
 
    {% for quote in quotes.object_list %}
    <h3 class="success">
+      <p align="right">
+         Quote <a href="/qdb/quote/{{ quote.id }}">{{ quote.id }}</a>
+      </p>
       <blockquote>
          {{ quote.contents|linebreaks }} <br />
       </blockquote>
