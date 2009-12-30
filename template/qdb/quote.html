@@ -3,15 +3,17 @@
 {% block title %}Quote #{{ quote.id }}{% endblock %}
 {% block h1title %}Quote #{{ quote.id }} by {{quote.submitter }}{% endblock %}
 {% block subtitle %}{% endblock %}
+{% block sublinks %}{% include "qdb/links.html" %}{% endblock %}
 {% block content %}
-<p>
-<center>
-   <h3>
-      {{ quote.contents|linebreaks }} <br /> 
-   </h3>
-   <h4>
-      {{ quote.comment|linebreaks }} <br /> 
+   <br />
+   <h4 class="notice">
+      <b>Comment: </b>{{ quote.comment }} <br /> 
    </h4>
+
+   <h3>
+      <blockquote class="success">
+         {{ quote.contents|linebreaks }} <br />
+      </blockquote>
+   </h3>
 </center>   
-</p>
 {% endblock %}
