@@ -17,6 +17,7 @@ urlpatterns = patterns('',
    (r'^qdb/quote/(?P<id>.*)$', "qdb.views.showquote"),
    (r'^qdb/add/$', "qdb.views.addquote"),
    (r'^qdb/addquote/$', "qdb.views.addquote"),
+   (r'^qdb/list/(?P<page>\d+)$', "qdb.views.list"),
 
    # Authentication
    (r'^login/$', login),
