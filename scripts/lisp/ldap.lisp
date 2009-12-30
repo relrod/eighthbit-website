@@ -50,3 +50,23 @@ Defautls to an empty string which means no pass.")
        (ldap:bind ,ldap)
        (progn ,@body)
      (ldap:unbind ,ldap)))
+
+(defun strip-newlines (string &optional (replace-char nil))
+  "Given a string, remove all newlines.
+
+This is very irc specific where lines need to be all on one line.
+
+Note that the newline is not replaced by a space!"
+  (coerce
+   (loop for char in (coerce string 'list)
+      when (and replace-char (eq char #\Newline)) collect replace-char
+      unless (eq char #\Newline) collect char)
+   'string))
+
+(defun print-single-entry (search-string)
+  (strip-newlines
+   (ldap:ldif
+    (with-ldap *ldap*
+      (ldap:search *ldap* search-string)
+      (ldap:next-search-result *ldap*)))
+   #\ ))
