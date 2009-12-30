@@ -9,11 +9,12 @@ class Migration:
         
         # Adding model 'Quote'
         db.create_table('qdb_quote', (
-            ('id', orm['qdb.Quote:id']),
-            ('score', orm['qdb.Quote:score']),
-            ('submitter', orm['qdb.Quote:submitter']),
-            ('contents', orm['qdb.Quote:contents']),
-            ('comment', orm['qdb.Quote:comment']),
+            ('comment', models.CharField(max_length=200)),
+            ('approved', models.BooleanField()),
+            ('score', models.IntegerField()),
+            ('submitter', models.CharField(max_length=50)),
+            ('id', models.AutoField(primary_key=True)),
+            ('contents', models.TextField()),
         ))
         db.send_create_signal('qdb', ['Quote'])
         
@@ -28,11 +29,12 @@ class Migration:
     
     models = {
         'qdb.quote': {
-            'comment': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'contents': ('django.db.models.fields.TextField', [], {}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'score': ('django.db.models.fields.IntegerField', [], {}),
-            'submitter': ('django.db.models.fields.CharField', [], {'max_length': '50'})
+            'approved': ('models.BooleanField', [], {}),
+            'comment': ('models.CharField', [], {'max_length': '200'}),
+            'contents': ('models.TextField', [], {}),
+            'id': ('models.AutoField', [], {'primary_key': 'True'}),
+            'score': ('models.IntegerField', [], {}),
+            'submitter': ('models.CharField', [], {'max_length': '50'})
         }
     }
     

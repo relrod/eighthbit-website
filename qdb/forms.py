@@ -1,6 +1,11 @@
-from django import forms
+from django.forms import ModelForm
+from qdb.models import Quote
 
-class AddQuote(forms.Form):
-   submitter = forms.CharField(max_length=50,required=True)
-   contents = forms.CharField( widget=forms.widgets.Textarea(), required=True )
-   comment = forms.CharField(max_length=200, required=False)
+class AddQuote(ModelForm):
+   class Meta:
+      model = Quote
+      exclude = ['approved','score']
+
+  # submitter = forms.CharField(max_length=50,required=True)
+  # contents = forms.CharField( widget=forms.widgets.Textarea(), required=True )
+  # comment = forms.CharField(max_length=200, required=False)

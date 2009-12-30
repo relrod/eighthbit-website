@@ -4,7 +4,7 @@ from qdb.models import Quote
 from qdb.forms import AddQuote
 
 def showquote(request, id):
-   quote = get_object_or_404(Quote, id=id)
+   quote = get_object_or_404(Quote, id=id, approved=1)
    return render_to_response('qdb/quote.html', {'quote' : quote})
 
 def addquote(request):
@@ -18,8 +18,11 @@ def addquote(request):
          newquote.contents = data['contents']
          if data['comment']: 
             newquote.comment = data['comment']
+         newquote.approved = 0
          newquote.save()
-         return HttpResponseRedirect('../quote/' + str(newquote.id))
+         #return HttpResponseRedirect('../quote/' + str(newquote.id))
+         form = AddQuote()
+         return render_to_response('qdb/addquote.html', { 'form' : form, 'saved' : True })
       else:
          return render_to_response('qdb/addquote.html', {'form' : form} )
    else:

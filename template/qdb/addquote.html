@@ -9,6 +9,9 @@
    {% if form.errors %}
       <b>Please fix the errors below, and try again.</b>
    {% endif %}
+   {% if saved %}
+      <div class="success">Your quote has been added to the queue. Thanks!</div>
+   {% endif %}
    <form action="" method="post">
       {% for field in form %}
          {% if field.errors %}
