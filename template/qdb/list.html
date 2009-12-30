@@ -4,7 +4,7 @@
 {% block sublinks %}{% include "qdb/links.html" %}{% endblock %}
 {% block content %}
    <br />
-   <p align="right">
+   <p style="text-align: right">
    {% if quotes.has_previous %}
       <a href="/qdb/list/{{quotes.previous_page_number}}">&laquo;</a>
    {% endif %}
@@ -14,17 +14,16 @@
    {% endif %}
 
    {% for quote in quotes.object_list %}
-   <h3 class="success">
-      <p align="right">
-         Quote <a href="/qdb/quote/{{ quote.id }}">{{ quote.id }}</a>
-      </p>
+   <div class="success">
       <blockquote>
-         {{ quote.contents|linebreaks }} <br />
+         <p style="text-align: right">
+            Quote <a href="/qdb/quote/{{ quote.id }}">{{ quote.id }}</a>
+         </p>
+	 <h3>{{ quote.contents|linebreaksbr }} </h3><br />
+         {% if quote.comment %}
+            Comment: {{ quote.comment }}
+         {% endif %}
       </blockquote>
-      {% if quote.comment %}
-         Comment: {{ quote.comment }}
-      {% endif %}
-   </h3>
+   </div>
    {% endfor %}
-</center>   
 {% endblock %}
