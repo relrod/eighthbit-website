@@ -1,6 +1,7 @@
 *.pyo
 *.pyc
 *.swp
+*.swo
 settings.py
 db/db.sqlite3
 
