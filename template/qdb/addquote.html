@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Add a quote{{ quote.id }}{% endblock %}
+{% block h1title %}Add a quote{% endblock %}
+{%block subtitle %}{% endblock %}
+{% block content %}
+<p>
+   {% if error %}
+      Please fill out both submitter and contents! Comment is optional
+   {% endif %}
+   <center>
+      <form  method="post">
+         <ul>
+            {{ form.as_ul }}
+         </ul>
+         <input type="submit" value="Submit">
+      </form>
+   </center>   
+</p>
+{% endblock %}
