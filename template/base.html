@@ -1,10 +1,11 @@
 {% comment %}
 vim:ft=htmldjango ts=3 sw=3 et
 {% endcomment %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html>
 <html>
    <head>
       <title>EighthBit: {% block title %}home{% endblock %}</title>
+      <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
       <link rel="stylesheet" href="/media/blueprint/screen.css" type="text/css" media="screen, projection" />
       <link rel="stylesheet" href="/media/blueprint/print.css" type="text/css" media="print" />
       <!--[if lt IE 8]>
@@ -21,22 +22,25 @@ vim:ft=htmldjango ts=3 sw=3 et
          #header .linkbar a:hover {
             color: #4c7b47;
          }
+         .center {
+            text-align: center;
+         }
       </style>
    </head>
    <body>
       <div class="container">
          <div class="span-24" id="header">
-            <center>
+            <div class="center">
                <img src="/media/logos/logo-nobg.png" alt="eighthbit" />
-            </center>
+            </div>
             <div class="linkbar">
                <a href="/webchat" class="link">Web Chat</a> // 
                <a href="/qdb" class="link">Quote Database</a>
             </div>
             <hr />
-            <center>
+            <div class="center">
                {% block sublinks %}{% endblock %}
-            </center>
+            </div>
                      </div>
          <div class="span-24">
             {% block content %}
