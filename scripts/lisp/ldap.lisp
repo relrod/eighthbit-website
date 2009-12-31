@@ -70,11 +70,13 @@ Note that the newline is not replaced by a space!"
       unless (eq char #\Newline) collect char)
    'string))
 
-(defun print-single-entry (search-string &optional (ldap *ldap*))
+(defun print-single-entry (search-string &key (ldap *ldap*)
+                           attrs)
   (strip-newlines
    (ldap:ldif
     (with-ldap ldap
-      (ldap:search ldap search-string)
+      (ldap:search ldap search-string
+                   :attributes attrs)
       (ldap:next-search-result ldap)))
    #\ ))
 
