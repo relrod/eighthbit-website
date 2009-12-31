@@ -5,7 +5,7 @@ from qdb.models import Quote
 from qdb.forms import AddQuote
 
 def list(request, page):
-   quotes = Quote.objects.filter(approved=1)
+   quotes = Quote.objects.filter(approved=1).order_by('-id')
    paginator = Paginator(quotes, 25)
 
    try:
