@@ -81,7 +81,8 @@ Note that the newline is not replaced by a space!"
 
 (defun list-search-results (search-string &optional (ldap *ldap*))
   "List of entries from a search."
-  (ldap:search ldap search-string)
+  (with-ldap ldap
+    (ldap:search ldap search-string))
   (let (result)
     (while (ldap:results-pending-p ldap)
       (push (ldap:next-search-result ldap) result))
