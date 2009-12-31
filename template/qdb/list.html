@@ -19,7 +19,7 @@
          <p style="text-align: right">
             <a href="/qdb/quote/{{ quote.id }}">Quote {{ quote.id }}</a>
          </p>
-	 <h3>{{ quote.contents|linebreaksbr }} </h3><br />
+	 <h3>{{ quote.contents|linebreaksbr|spacify }} </h3><br />
          {% if quote.comment %}
             Comment: {{ quote.comment }}
          {% endif %}
