@@ -14,11 +14,12 @@ urlpatterns = patterns('',
    #(r'^wiki/(?P<Title>.*)$', "wiki.views.showpage"),
    
    # QDB:
-   (r'^qdb/quote/(?P<id>.*)$', "qdb.views.showquote"),
+   (r'^qdb/quote/(?P<id>[0-9]+)/(?P<direction>up|down)/$', "qdb.views.showargs"),
+   (r'^qdb/quote/(?P<id>.*)/$', "qdb.views.showquote"),
    (r'^qdb/random/$', "qdb.views.showquote", {"id": "random"}),
    (r'^qdb/add/$', "qdb.views.addquote"),
    (r'^qdb/addquote/$', "qdb.views.addquote"),
-   (r'^qdb/list/(?P<page>\d+)$', "qdb.views.list"),
+   (r'^qdb/list/(?P<page>\d+)/$', "qdb.views.list"),
    (r'^qdb/$', "qdb.views.list", {"page" : 1} ),
 
    # Authentication
