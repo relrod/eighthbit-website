@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load spacify %}
+<<<<<<< HEAD
 
+=======
+{% block scripts %} <script src="/media/js/qdb/voting.js"></script> {% endblock %}
+>>>>>>> baddog/master
 {% block title %}Quote #{{ quote.id }}{% endblock %}
 {% block h1title %}Quote #{{ quote.id }} by {{quote.submitter }}{% endblock %}
 {% block subtitle %}{% endblock %}
@@ -14,7 +18,11 @@
    <div class="success">
       <blockquote>
          <p style="text-align: right">
+<<<<<<< HEAD
             Quote {{ quote.id }}
+=======
+         Quote {{ quote.id }} Score: <span id="score">{{ quote.score }}</span> <a href="#" onclick="upvote(); return false;">+</a> <a href="#" onclick="downvote();">-</a>
+>>>>>>> baddog/master
          </p>
     <pre>{{ quote.contents }}</pre><br />
       </blockquote>

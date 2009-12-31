@@ -38,3 +38,14 @@ def addquote(request):
    else:
       form = AddQuote()
       return render_to_response('qdb/addquote.html', {'form' : form} )
+
+
+def vote(request, id, direction):
+   quote = get_object_or_404(Quote, id=id)
+   if direction == "up":
+      quote.score += 1
+   elif direction == "down":
+      quote.score -= 1
+  
+   quote.save()
+   return HttpResponse(str(quote.score))
