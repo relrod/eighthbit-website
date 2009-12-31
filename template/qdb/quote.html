@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load spacify %}
 
 {% block title %}Quote #{{ quote.id }}{% endblock %}
 {% block h1title %}Quote #{{ quote.id }} by {{quote.submitter }}{% endblock %}
@@ -15,7 +16,7 @@
          <p style="text-align: right">
             Quote {{ quote.id }}
          </p>
-	 <h3>{{ quote.contents|linebreaksbr }} </h3><br />
+	 <h3>{{ quote.contents|linebreaksbr|spacify }} </h3><br />
       </blockquote>
    </div>
 {% endblock %}
