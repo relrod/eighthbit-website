@@ -14,7 +14,7 @@ urlpatterns = patterns('',
    #(r'^wiki/(?P<Title>.*)$', "wiki.views.showpage"),
    
    # QDB:
-   (r'^qdb/quote/(?P<id>[0-9]+)/(?P<direction>up|down)/$', "qdb.views.showargs"),
+   (r'^qdb/quote/(?P<id>[0-9]+)/(?P<direction>up|down)/$', "qdb.views.vote"),
    (r'^qdb/quote/(?P<id>.*)/$', "qdb.views.showquote"),
    (r'^qdb/random/$', "qdb.views.showquote", {"id": "random"}),
    (r'^qdb/add/$', "qdb.views.addquote"),

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load spacify %}
+{% block scripts %} <script src="/media/js/qdb/voting.js"></script> {% endblock %}
 
 {% block title %}Quote #{{ quote.id }}{% endblock %}
 {% block h1title %}Quote #{{ quote.id }} by {{quote.submitter }}{% endblock %}
@@ -14,7 +15,7 @@
    <div class="success">
       <blockquote>
          <p style="text-align: right">
-            Quote {{ quote.id }}
+         Quote {{ quote.id }} Score: <span id="score">{{ quote.score }}</span> <a href="#" onclick="upvote(); return false;">+</a> <a href="#" onclick="downvote();">-</a>
          </p>
     <pre>{{ quote.contents }}</pre><br />
       </blockquote>

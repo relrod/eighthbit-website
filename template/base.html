@@ -4,6 +4,8 @@ vim:ft=htmldjango ts=3 sw=3 et
 <!DOCTYPE html>
 <html>
    <head>
+      {% block scripts %}
+      {% endblock %}
       <title>EighthBit: {% block title %}home{% endblock %}</title>
       <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
       <link rel="stylesheet" href="/media/blueprint/screen.css" type="text/css" media="screen, projection" />
