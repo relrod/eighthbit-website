@@ -42,6 +42,12 @@ Defautls to an empty string which means no pass.")
                  :pass pass
                  :base base))
 
+(defmacro while (test &body body)
+  "While, like in most other languages."
+  `(do ()
+       ((not ,test))
+     ,@body))
+
 (defparameter *ldap* (make-8b-ldap))
 (defparameter *anon-ldap* (make-8b-ldap :user "" :pass ""))
 
@@ -71,3 +77,12 @@ Note that the newline is not replaced by a space!"
       (ldap:search ldap search-string)
       (ldap:next-search-result ldap)))
    #\ ))
+
+
+(defun list-search-results (search-string &optional (ldap *ldap*))
+  "List of entries from a search."
+  (ldap:search ldap search-string)
+  (let (result)
+    (while (ldap:results-pending-p ldap)
+      (push (ldap:next-search-result ldap) result))
+    (nreverse (cdr result))))
