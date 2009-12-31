@@ -34,11 +34,11 @@ function processReqChange(req, callback) {
    }
 }
                 
-function upvote() {
-   loadDoc('./up', 'updatescore');
+function upvote(id) {
+   loadDoc('/qdb/quote/'+id+'/up', 'updatescore');
 } 
-function downvote() {
-   loadDoc('./down', 'updatescore');
+function downvote(id) {
+   loadDoc('/qdb/quote/'+id+'/down', 'updatescore');
 }
 
 function updatescore(response) {

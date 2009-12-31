@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block scripts %} <script src="/media/js/qdb/voting.js"></script> {% endblock %}
 {% block title %}Quotes Listing (page {{ quotes.number }}){% endblock %}
 {% block sublinks %}{% include "qdb/links.html" %}{% endblock %}
 {% block content %}
@@ -17,7 +17,7 @@
    <div class="success">
       <blockquote>
          <p style="text-align: right">
-            <a href="/qdb/quote/{{ quote.id }}">Quote {{ quote.id }}</a>
+         <a href="/qdb/quote/{{ quote.id }}">Quote {{ quote.id }}</a> Score: <span id="score">{{ quote.score }}</span> <a href="#" onclick="upvote({{ quote.id }}); return false;">+</a> <a href="#" onclick="downvote({{ quote.id }}); return false;">-</a>
          </p>
 	 <pre>{{ quote.contents }}</pre><br />
          {% if quote.comment %}
