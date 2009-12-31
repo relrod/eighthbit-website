@@ -43,6 +43,7 @@ Defautls to an empty string which means no pass.")
                  :base base))
 
 (defparameter *ldap* (make-8b-ldap))
+(defparameter *anon-ldap* (make-8b-ldap :user "" :pass ""))
 
 (defmacro with-ldap (ldap &body body)
   "Execute BODY in the context of LDAP bound to the ldap server."
