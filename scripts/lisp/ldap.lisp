@@ -1,9 +1,9 @@
 (require :trivial-ldap)
 
-(defpackage #:8b-ldap
+(defpackage #:nisp.ldap
   (:use :cl))
 
-(in-package :8b-ldap)
+(in-package :nisp.ldap)
 
 ;;; For eighthbit we use ssh tunnels to LDAP, so make sure this matches
 ;;; up with your local machine name. This may _not_ be localhost!
@@ -42,7 +42,14 @@ Defautls to an empty string which means no pass.")
                  :pass pass
                  :base base))
 
+(defmacro while (test &body body)
+  "While, like in most other languages."
+  `(do ()
+       ((not ,test))
+     ,@body))
+
 (defparameter *ldap* (make-8b-ldap))
+(defparameter *anon-ldap* (make-8b-ldap :user "" :pass ""))
 
 (defmacro with-ldap (ldap &body body)
   "Execute BODY in the context of LDAP bound to the ldap server."
@@ -63,10 +70,22 @@ Note that the newline is not replaced by a space!"
       unless (eq char #\Newline) collect char)
    'string))
 
-(defun print-single-entry (search-string)
+(defun print-single-entry (search-string &key (ldap *anon-ldap*)
+                           attrs)
   (strip-newlines
    (ldap:ldif
-    (with-ldap *ldap*
-      (ldap:search *ldap* search-string)
-      (ldap:next-search-result *ldap*)))
+    (with-ldap ldap
+      (ldap:search ldap search-string
+                   :attributes attrs)
+      (ldap:next-search-result ldap)))
    #\ ))
+
+
+(defun list-search-results (search-string &optional (ldap *anon-ldap*))
+  "List of entries from a search."
+  (with-ldap ldap
+    (ldap:search ldap search-string))
+  (let (result)
+    (while (ldap:results-pending-p ldap)
+      (push (ldap:next-search-result ldap) result))
+    (nreverse (cdr result))))
