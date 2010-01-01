@@ -70,7 +70,7 @@ Note that the newline is not replaced by a space!"
       unless (eq char #\Newline) collect char)
    'string))
 
-(defun print-single-entry (search-string &key (ldap *ldap*)
+(defun print-single-entry (search-string &key (ldap *anon-ldap*)
                            attrs)
   (strip-newlines
    (ldap:ldif
@@ -81,7 +81,7 @@ Note that the newline is not replaced by a space!"
    #\ ))
 
 
-(defun list-search-results (search-string &optional (ldap *ldap*))
+(defun list-search-results (search-string &optional (ldap *anon-ldap*))
   "List of entries from a search."
   (with-ldap ldap
     (ldap:search ldap search-string))
