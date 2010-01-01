@@ -1,9 +1,9 @@
 (require :trivial-ldap)
 
-(defpackage #:8b-ldap
+(defpackage #:nisp.ldap
   (:use :cl))
 
-(in-package :8b-ldap)
+(in-package :nisp.ldap)
 
 ;;; For eighthbit we use ssh tunnels to LDAP, so make sure this matches
 ;;; up with your local machine name. This may _not_ be localhost!
