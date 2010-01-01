@@ -6,6 +6,5 @@ class Quote(models.Model):
    contents = models.TextField()
    comment = models.CharField(max_length=200, blank=True, null=False)
    approved = models.BooleanField()
-   
    def __unicode__(self):
       return "#%s by %s" % (self.id, self.submitter)

@@ -42,5 +42,6 @@ function downvote(id) {
 }
 
 function updatescore(response) {
-   document.getElementById("score").innerHTML = response;
+   var split = response.split(":"); //split[0] = id, split[1] = score
+   document.getElementById(split[0]).innerHTML = split[1];
 }

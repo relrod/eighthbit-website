@@ -48,4 +48,4 @@ def vote(request, id, direction):
       quote.score -= 1
   
    quote.save()
-   return HttpResponse(str(quote.score))
+   return HttpResponse(str(id) + ":" + str(quote.score))
