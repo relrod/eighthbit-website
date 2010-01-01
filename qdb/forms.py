@@ -4,7 +4,7 @@ from qdb.models import Quote
 class AddQuote(ModelForm):
    class Meta:
       model = Quote
-      exclude = ['approved','score']
+      exclude = ['approved','score','votedIPs']
 
   # submitter = forms.CharField(max_length=50,required=True)
   # contents = forms.CharField( widget=forms.widgets.Textarea(), required=True )
