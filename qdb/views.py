@@ -42,10 +42,13 @@ def addquote(request):
 
 def vote(request, id, direction):
    quote = get_object_or_404(Quote, id=id)
-   if direction == "up":
-      quote.score += 1
-   elif direction == "down":
-      quote.score -= 1
-  
+   if request.META.get('REMOTE_ADDR', None) in quote.votedIPs.split(','):
+      return HttpResponse("You already voted!")
+   else:
+      if direction == "up":
+         quote.score += 1
+      elif direction == "down":
+         quote.score -= 1
+      quote.votedIPs  += request.META.get('REMOTE_ADDR', None) + ","
    quote.save()
    return HttpResponse(str(id) + ":" + str(quote.score))
