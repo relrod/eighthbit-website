@@ -7,5 +7,6 @@ class Quote(models.Model):
    comment = models.CharField(max_length=200, blank=True, null=False)
    approved = models.BooleanField()
    votedIPs = models.TextField(default='', blank=True, null=False, editable=False) #This is just a comma seperated list for ow. Subject to change.
+   canvote = models.BooleanField(default=True, editable=False)
    def __unicode__(self):
       return "#%s by %s" % (self.id, self.submitter)
