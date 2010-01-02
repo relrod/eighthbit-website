@@ -9,3 +9,9 @@ class Quote(models.Model):
    votedIPs = models.TextField(default='', blank=True, null=False, editable=False) #This is just a comma seperated list for ow. Subject to change.
    def __unicode__(self):
       return "#%s by %s" % (self.id, self.submitter)
+
+   def canvote(self, ip):
+      if ip in self.votedIPs.split(','):
+         return False
+      else:
+         return  True

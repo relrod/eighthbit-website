@@ -7,12 +7,16 @@ from qdb.forms import AddQuote
 def list(request, page):
    quotes = Quote.objects.filter(approved=1).order_by('-id')
    paginator = Paginator(quotes, 25)
-
    try:
       quotepage = paginator.page(page)
    except (EmptyPage, InvalidPage):
       quotepage = paginator.page(paginator.num_pages)
-
+   for quote in quotes:
+#      if request.META.get('REMOTE_ADDR') in quote.votedIPs.split(','):
+       quote.canvote = False
+       quote.save()
+#      else:
+#         quote.canvote = True
    return render_to_response("qdb/list.html", {"quotes" : quotepage})
 
 def showquote(request, id):
@@ -20,7 +24,7 @@ def showquote(request, id):
       quote = Quote.objects.all().order_by('?')[:1].get()
    else:
       quote = get_object_or_404(Quote, id=id, approved=1)
-   return render_to_response('qdb/quote.html', {'quote' : quote})
+   return render_to_response('qdb/quote.html', {'quote' : quote, 'canvote' : quote.canvote(request.META.get('REMOTE_ADDR'))})
 
 def addquote(request):
    if request.method == 'POST':
