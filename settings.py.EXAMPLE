@@ -1,5 +1,8 @@
 # Django settings for eighthbit project.
 import os
+import ldap
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType, MemberDNGroupType
+
 relpath = lambda *x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 
 DEBUG = True
@@ -11,23 +14,46 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = relpath("db/db.sqlite3")
-DATABASE_USER = ''
-DATABASE_PASSWORD = ''
-DATABASE_HOST = ''
-DATABASE_PORT = ''
+DATABASE_ENGINE = 'mysql'
+DATABASE_NAME = 'somedatabase'
+DATABASE_USER = 'someuser'
+DATABASE_PASSWORD = 'password_here'
+DATABASE_HOST = '127.0.0.1'
+DATABASE_PORT = '3306'
+
+
+AUTH_LDAP_SERVER_URI = "ldap://localhost:2242"
+#this works, and will always work.
+AUTH_LDAP_USER_DN_TEMPLATE = "uid=%(user)s,ou=users,ou=irc,dc=eighthbit,dc=net"
+
+#This lists all the valid groups we can auth from, so we need to be a bit more specific
+#about which groups that is.
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou=groups,ou=irc,dc=eighthbit,dc=net", 
+                                     ldap.SCOPE_SUBTREE)
+
+#This tells us what we expect as a result... I think
+AUTH_LDAP_GROUP_TYPE = MemberDNGroupType(member_attr='member',name_attr='ou')
+
+AUTH_LDAP_USER_FLAGS_BY_GROUP = {
+      "is_active": "ou=EighthBit,ou=groups,ou=irc,dc=eighthbit,dc=net",
+      "is_staff": "ou=EighthBit,ou=groups,ou=irc,dc=eighthbit,dc=net",
+      "is_superuser": "ou=EighthBit,ou=groups,ou=irc,dc=eighthbit,dc=net"
+}
+
+AUTH_LDAP_USER_ATTR_MAP = {
+      "first_name": "cn",
+      "last_name": "sn",
+      "email": "mail",
+}
+
+AUTH_LDAP_CACHE_GROUPS = False
+AUTH_LDAP_FIND_GROUP_PERMS = True
 
 
 AUTHENTICATION_BACKENDS = (
    'django_auth_ldap.backend.LDAPBackend',
    'django.contrib.auth.backends.ModelBackend',
 )
-
-AUTH_LDAP_SERVER_URI = "ldap://localhost:3389"
-
-AUTH_LDAP_USER_DN_TEMPLATE = "uid=%(user)s,ou=bits,ou=users,dc=eighthbit,dc=net"
-
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -92,8 +118,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'south', # Database Migrations
+    'bitwik',
     'general',
     'roadmap',
-    'wiki',
+    #'wiki',
     'qdb',
 )
