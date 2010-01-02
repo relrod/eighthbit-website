@@ -11,6 +11,7 @@ class Quote(models.Model):
       return "#%s by %s" % (self.id, self.submitter)
 
    def canvote(self, ip):
+      """Can IP vote? Return true if it can, else false."""
       if ip in self.votedIPs.split(','):
          return False
       else:
