@@ -14,7 +14,9 @@
    <div class="success">
       <blockquote>
          <p style="text-align: right">
-         Quote {{ quote.id }} Score: <span id="{{ quote.id }}">{{ quote.score }}</span> <a href="#" onclick="upvote( {{ quote.id }}); return false;">+</a> <a href="#" onclick="downvote({{ quote.id }}); return false;">-</a>
+         Quote {{ quote.id }} Score: <span id="{{ quote.id }}">{{ quote.score }}</span>
+         {% if canvote %} <a href="#" onclick="upvote( {{ quote.id }}); return false;">+</a> <a href="#" onclick="downvote({{ quote.id }}); return false;">-</a>
+         {% endif %}
          </p>
     <pre>{{ quote.contents }}</pre><br />
       </blockquote>
