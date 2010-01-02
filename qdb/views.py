@@ -11,13 +11,8 @@ def list(request, page):
       quotepage = paginator.page(page)
    except (EmptyPage, InvalidPage):
       quotepage = paginator.page(paginator.num_pages)
-   for quote in quotes:
-#      if request.META.get('REMOTE_ADDR') in quote.votedIPs.split(','):
-       quote.canvote = False
-       quote.save()
-#      else:
-#         quote.canvote = True
-   return render_to_response("qdb/list.html", {"quotes" : quotepage})
+   return render_to_response("qdb/list.html",
+         {"quotes" : quotepage, "ip":request.META['REMOTE_ADDR'] })
 
 def showquote(request, id):
    if id == "random":

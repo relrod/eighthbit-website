@@ -8,19 +8,13 @@ class Migration:
     def forwards(self, orm):
         
         # Adding field 'Quote.votedIPs'
-        db.add_column('qdb_quote', 'votedIPs', orm['qdb.quote:votedIPs'])
-        
-        # Changing field 'Quote.comment'
-        # (to signature: django.db.models.fields.CharField(max_length=200, blank=True))
-        db.alter_column('qdb_quote', 'comment', orm['qdb.quote:comment'])
+        db.add_column('qdb_quote', 'votedIPs', models.TextField(default='', null=False, editable=False, blank=True))
         
         # Changing field 'Quote.approved'
-        # (to signature: django.db.models.fields.BooleanField(blank=True))
-        db.alter_column('qdb_quote', 'approved', orm['qdb.quote:approved'])
+        db.alter_column('qdb_quote', 'approved', models.BooleanField())
         
         # Changing field 'Quote.score'
-        # (to signature: django.db.models.fields.IntegerField())
-        db.alter_column('qdb_quote', 'score', orm['qdb.quote:score'])
+        db.alter_column('qdb_quote', 'score', models.IntegerField())
         
     
     
@@ -29,29 +23,23 @@ class Migration:
         # Deleting field 'Quote.votedIPs'
         db.delete_column('qdb_quote', 'votedIPs')
         
-        # Changing field 'Quote.comment'
-        # (to signature: models.CharField(max_length=200, null=False, blank=True))
-        db.alter_column('qdb_quote', 'comment', orm['qdb.quote:comment'])
-        
         # Changing field 'Quote.approved'
-        # (to signature: models.BooleanField(editable=False))
-        db.alter_column('qdb_quote', 'approved', orm['qdb.quote:approved'])
+        db.alter_column('qdb_quote', 'approved', models.BooleanField(default=0, editable=False))
         
         # Changing field 'Quote.score'
-        # (to signature: models.IntegerField(editable=False))
-        db.alter_column('qdb_quote', 'score', orm['qdb.quote:score'])
+        db.alter_column('qdb_quote', 'score', models.IntegerField(default=0, editable=False))
         
     
     
     models = {
         'qdb.quote': {
-            'approved': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'blank': 'True'}),
-            'comment': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
-            'contents': ('django.db.models.fields.TextField', [], {}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'score': ('django.db.models.fields.IntegerField', [], {}),
-            'submitter': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'votedIPs': ('django.db.models.fields.TextField', [], {})
+            'approved': ('models.BooleanField', [], {}),
+            'comment': ('models.CharField', [], {'max_length': '200', 'null': 'False', 'blank': 'True'}),
+            'contents': ('models.TextField', [], {}),
+            'id': ('models.AutoField', [], {'primary_key': 'True'}),
+            'score': ('models.IntegerField', [], {}),
+            'submitter': ('models.CharField', [], {'max_length': '50'}),
+            'votedIPs': ('models.TextField', [], {'default': "''", 'null': 'False', 'editable': 'False', 'blank': 'True'})
         }
     }
     
