@@ -12,7 +12,7 @@ def list(request, page):
    except (EmptyPage, InvalidPage):
       quotepage = paginator.page(paginator.num_pages)
    return render_to_response("qdb/list.html",
-         {"quotes" : quotepage, "ip":request.META['REMOTE_ADDR'] })
+         {"quotes" : quotepage})
 
 def showquote(request, id):
    if id == "random":
