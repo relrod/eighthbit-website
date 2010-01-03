@@ -8,10 +8,12 @@ urlpatterns = patterns('',
 
    # Core Site:
    (r'^admin/', include(admin.site.urls)),
+
+   # This should be removed for production.
    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 
-   # Wiki:
-   #(r'^wiki/(?P<Title>.*)$', "wiki.views.showpage"),
+   # BitWik:
+   (r'^wiki/(?P<title>.*)$', "bitwik.views.showpage"),
    
    # QDB:
    (r'^qdb/quote/(?P<id>[0-9]+)/(?P<direction>up|down)/$', "qdb.views.vote"),
