@@ -18,11 +18,8 @@
       <blockquote>
          <p style="text-align: right">
          <a href="/qdb/quote/{{ quote.id }}">Quote {{ quote.id }}</a> Score: <span id="{{ quote.id }}">{{ quote.score }}</span>
-         {% if quote.canvote %}         
             <a href="#" onclick="upvote({{ quote.id }}); return false;">+</a> <a href="#" onclick="downvote({{ quote.id }}); return false;">-</a>
-         {% else %}
             + -
-         {% endif %}
          </p>
 	 <pre>{{ quote.contents }}</pre><br />
          {% if quote.comment %}
