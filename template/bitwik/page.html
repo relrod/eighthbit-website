@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load spacify %}
+{% load markup %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block h1title %}{{ title }}{% endblock %}
+{% block subtitle %}/bitwik/{{ slug }}{% endblock %}
+{# {% block sublinks %}{% include "qdb/links.html" %}{% endblock %} #}
+{% block content %}
+   <blockquote>
+       {{ content|markdown }}<br />
+   </blockquote>
+
+   <p style="text-align: right"><b>Revision Comment:</b> {{ comment }}</p>
+{% endblock %}

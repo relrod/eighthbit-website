@@ -13,13 +13,12 @@ def showpage(request, title):
    # And get the latest revision.
    revision = Revision.objects.filter(page=page)[0]
 
-#   return render_to_response("wiki.html",
-#         {
-#            "title": page.title,
-#            "timestamp": revision.timestamp,
-#            "local_revision": revision.local_revision,
-#            "content": revision.content,
-#            "slug": page.slug
-#         })
-   return HttpResponse("We have: " + page.title+" "+revision.content)
-
+   return render_to_response("bitwik/page.html",
+         {
+            "title": page.title,
+            "timestamp": revision.timestamp,
+            "local_revision": revision.local_revision,
+            "content": revision.content,
+            "comment": revision.comment,
+            "slug": page.slug
+         })

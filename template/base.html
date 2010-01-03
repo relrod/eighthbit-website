@@ -37,14 +37,16 @@ vim:ft=htmldjango ts=3 sw=3 et
             </div>
             <div class="linkbar">
                <a href="/webchat" class="link">Web Chat</a> // 
-               <a href="/qdb" class="link">Quote Database</a>
+               <a href="/qdb" class="link">Quote Database</a> // 
+               <a href="/wiki" class="link">The BitWik(i)</a>
             </div>
             <hr />
             <div class="center">
                {% block sublinks %}{% endblock %}
             </div>
-                     </div>
+         </div>
          <div class="span-24">
+            <h2>{% block h1title %}{% endblock %}</h2>
             {% block content %}
                ...
             {% endblock %}
