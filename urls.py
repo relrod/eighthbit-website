@@ -10,11 +10,12 @@ urlpatterns = patterns('',
    (r'^admin/', include(admin.site.urls)),
 
    # This should be removed for production.
-   (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+   (r'^media/(?P<path>.*)/$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 
    # BitWik:
-   (r'^wiki/(?P<title>.*)$', "bitwik.views.showpage"),
-   
+   (r'^wiki/edit/(?P<title>.*)/$', "bitwik.views.edit"),
+   (r'^wiki/(?P<title>.*)/$', "bitwik.views.showpage"),
+      
    # QDB:
    (r'^qdb/quote/(?P<id>[0-9]+)/(?P<direction>up|down)/$', "qdb.views.vote"),
    (r'^qdb/quote/(?P<id>.*)/$', "qdb.views.showquote"),

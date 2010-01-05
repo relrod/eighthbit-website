@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Editing BitWik Page{{ quote.id }}{% endblock %}
+{% block h1title %}Editing BitWik Page{% endblock %}
+{%block subtitle %}Editing /bitwik/<b>{{ slug }}</b>{% endblock %}
+{% block sublinks %}{% endblock %}
+{% block content %}
+<p>
+   {% if form.errors %}
+      <b>Please fix the errors below, and try again.</b>
+   {% endif %}
+   {% if saved %}
+      <div class="success">Saved your changes! (this will eventually redirect to the new page.)</div>
+   {% endif %}
+   <form action="" method="post">
+      {% for field in form %}
+         {% if field.errors %}
+            <div class="error">
+               {{ field.errors }}
+         {% endif %}
+         {{ field.label_tag }} {{ field }}<br />
+         {% if field.errors %}
+            </div>
+         {% endif %}
+      {% endfor %}
+      <input type="submit" value="Submit">
+   </form>
+</p>
+{% endblock %}

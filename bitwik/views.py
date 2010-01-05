@@ -1,14 +1,15 @@
 from bitwik.models import *
+from bitwik.forms import EditForm
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 def showpage(request, title):
    # The way this works: User goes to page. If page exists, show it. If not ask if user wants to create it.
    try:
       page = Page.objects.get(slug=title)
    except Page.DoesNotExist:
-#      return render_to_response("create.html",{"title": title, "404":True})
-      return HttpResponse("does not exist!")
+      request.session['404'] = True
+      return HttpResponseRedirect("/wiki/edit/" + title)
 
    # And get the latest revision.
    revision = Revision.objects.filter(page=page)[0]
@@ -22,3 +23,7 @@ def showpage(request, title):
             "comment": revision.comment,
             "slug": page.slug
          })
+
+def edit(request, title):
+   form = EditForm()
+   return render_to_response("bitwik/form.html", {"form": form, "slug": title} )
