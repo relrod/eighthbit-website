@@ -6,6 +6,3 @@ class EditForm(ModelForm):
    class Meta:
       model = Revision
       exclude = ("page")
-   
-   title = forms.CharField(max_length=255)
-

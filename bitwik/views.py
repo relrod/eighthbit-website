@@ -9,10 +9,10 @@ def showpage(request, title):
       page = Page.objects.get(slug=title)
    except Page.DoesNotExist:
       request.session['404'] = True
-      return HttpResponseRedirect("/wiki/edit/" + title)
+      return HttpResponseRedirect("/wiki/" + title + "/edit/")
 
    # And get the latest revision.
-   revision = Revision.objects.filter(page=page)[0]
+   revision = Revision.objects.filter(page=page).order_by('-id')[0]
 
    return render_to_response("bitwik/page.html",
          {
@@ -27,9 +27,19 @@ def showpage(request, title):
 def edit(request, title):
    try:
       page = Page.objects.get(slug=title)
-      revision = Revision.objects.filter(page=page)[0]
+      revision = Revision.objects.filter(page=page).order_by('-id')[0]
       form = EditForm(instance=revision)
    except Page.DoesNotExist:
       form = EditForm()
 
-   return render_to_response("bitwik/form.html", {"form": form, "slug": title} )
+   if request.method == 'POST':
+      form = EditForm(request.POST)
+      if form.is_valid():
+         newrev = form.save(commit=False)
+         newrev.page = page
+         newrev.save()
+         return HttpResponseRedirect("/wiki/" + title)
+      else:
+         return render_to_response("bitwik/form.html", {"form": form})
+   else:
+      return render_to_response("bitwik/form.html", {"form": form})

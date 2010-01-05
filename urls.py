@@ -13,8 +13,9 @@ urlpatterns = patterns('',
    (r'^media/(?P<path>.*)/$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 
    # BitWik:
-   (r'^wiki/edit/(?P<title>.*)/$', "bitwik.views.edit"),
+   (r'^wiki/(?P<title>.*)/edit/$', "bitwik.views.edit"),
    (r'^wiki/(?P<title>.*)/$', "bitwik.views.showpage"),
+
       
    # QDB:
    (r'^qdb/quote/(?P<id>[0-9]+)/(?P<direction>up|down)/$', "qdb.views.vote"),
