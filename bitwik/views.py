@@ -25,5 +25,11 @@ def showpage(request, title):
          })
 
 def edit(request, title):
-   form = EditForm()
+   try:
+      page = Page.objects.get(slug=title)
+      revision = Revision.objects.filter(page=page)[0]
+      form = EditForm(instance=revision)
+   except Page.DoesNotExist:
+      form = EditForm()
+
    return render_to_response("bitwik/form.html", {"form": form, "slug": title} )
