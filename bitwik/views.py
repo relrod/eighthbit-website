@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
 def showpage(request, title):
-   # The way this works: User goes to page. If page exists, show it. If not ask if user wants to create it.
+   # The way this works: User goes to page. If page exists, show it. If not ask if user wants to create it. << TODO
    try:
       page = Page.objects.get(slug=title)
    except Page.DoesNotExist:
@@ -32,10 +32,10 @@ def edit(request, title):
    except Page.DoesNotExist:
       form = EditForm()
 
-   if request.method == 'POST':
-      form = EditForm(request.POST)
+   if request.method == 'POST': # Submitted the form.
+      form = EditForm(request.POST) # Form contents
       if form.is_valid():
-         newrev = form.save(commit=False)
+         newrev = form.save(commit=False) # Don't save the form. make a new instance of it.
          newrev.page = page
          newrev.save()
          return HttpResponseRedirect("/wiki/" + title)
