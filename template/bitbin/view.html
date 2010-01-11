@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block scripts %}<link rel="stylesheet" href="/media/bitbin/syntax.css" type="text/css" />{% endblock %}
+{% block title %}{{ paste.id }} by {{ paste.originator }}{% endblock %}
+{% block h1title %}Bit #{{ paste.id }}{% endblock %}
+{% block subtitle %}/bitbin/{{ paste.id }}{% endblock %}
+{# {% block sublinks %}{% include "qdb/links.html" %}{% endblock %} #}
+{% block content %}
+<blockquote id="codehilite"> {% comment %} #codehilite is defined in /media/bitbin/css {% endcomment %}
+       {{ paste.text|markdown:"codehilite" }}<br />
+   </blockquote>
+{% endblock %}

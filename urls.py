@@ -16,6 +16,8 @@ urlpatterns = patterns('',
    (r'^wiki/(?P<title>.*)/edit/$', "bitwik.views.edit"),
    (r'^wiki/(?P<title>.*)/$', "bitwik.views.showpage"),
 
+   # BitBin
+   (r'^bitbin/(?P<id>[0-9]+)/$', "bitbin.views.paste"),
       
    # QDB:
    (r'^qdb/quote/(?P<id>[0-9]+)/(?P<direction>up|down)/$', "qdb.views.vote"),
