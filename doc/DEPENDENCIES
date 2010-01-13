@@ -1,0 +1,11 @@
+You need these dependencies to run EighthBit-mainsite properly.
+- django
+- mysql (bridge or local)
+- ldap (bridge or local)
+- pygments
+- py-markdown
+- py-pycrypto *
+
+
+* signifies that this is inevitably going to be used at some point,
+  but is not at the time of writing.
