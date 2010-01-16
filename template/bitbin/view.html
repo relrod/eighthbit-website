@@ -8,6 +8,6 @@
 {# {% block sublinks %}{% include "qdb/links.html" %}{% endblock %} #}
 {% block content %}
 <blockquote id="codehilite"> {% comment %} #codehilite is defined in /media/bitbin/css {% endcomment %}
-       {{ paste.text|markdown:"codehilite" }}<br />
+       <pre>{{ paste.text|linebreaks|markdown:"codehilite" }}</pre><br />
    </blockquote>
 {% endblock %}
