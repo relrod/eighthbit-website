@@ -24,6 +24,14 @@ class Bit(models.Model):
       hex = "0x" + upper(sha1(self.text + timestamp).hexdigest())[random:random+10]
       return hex
 
+   def biturl(self):
+      if self.private == True:
+         return '<a href="/bitbin/' + str(self.key) + '">/bitbin/' + str(self.key) + '</a>'
+      else:
+         return '<a href="/bitbin/"' + str(self.id) + '">/bitbin/' + str(self.id) + '</a>'
+   biturl.short_description = "URL"
+   biturl.allow_tags = True
+
    def save(self, *args, **kwargs):
       # If private is true, assign a key.
       # if we ever do symetrical encryption on a paste, do it here...
