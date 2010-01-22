@@ -9,12 +9,16 @@ def login(request):
       return render_to_response("registration/login.html")
 
    attemptlogin = ldap_login(
-         request.POST.get("username",""),
-         request.POST.get("password","")
+         {
+            "username": request.POST.get("username",""),
+            "password": request.POST.get("password","")
+         }
    )
 
    if attemptlogin["login"] == True:
-      auth.login(request, make_ldap_user(username))
+      auth.login(request,
+            make_ldap_user( {"username": request.POST.get("username","")} )
+      )
    else:
       # Failed login.
 
