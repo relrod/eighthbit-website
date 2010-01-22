@@ -32,4 +32,5 @@ urlpatterns = patterns('',
    # Authentication
    (r'^login/$', login),
    (r'^logout/$', logout),
+   (r'^logintest/$', 'general.views.login'),
 )
