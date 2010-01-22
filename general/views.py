@@ -21,7 +21,7 @@ def login(request):
       )
    else:
       # Failed login.
-
+      return False
 
 def front(request):
    links = Link.objects.all()
