@@ -1,8 +1,106 @@
-{% extends "base.html" %}
+{% comment %}
+vim:ft=htmldjango ts=3 sw=3 et
+{% endcomment %}
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>EighthBit: home</title>
+      <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+      <link rel="stylesheet" href="/media/blueprint/screen.css" type="text/css" media="screen, projection" />
+      <link rel="stylesheet" href="/media/blueprint/print.css" type="text/css" media="print" />
+      <link rel="stylesheet" href="/media/blueprint/fancyscreen.css" type="text/css" media="screen, projection" />
 
-{% block title %}home{% endblock %}
-{% block h1title %}EighthBit IRC{% endblock %}
-{% block subtitle %}the open source irc network.{% endblock %}
-{% block content %}
-<p>{{ frontpage.contents }}</p>
-{% endblock %}
+      <!--[if lt IE 8]>
+         <link rel="stylesheet" href="/media/blueprint/ie.css" type="text/css" media="screen, projection" />
+      <![endif]-->
+      <style type="text/css">
+         label { vertical-align: top; }
+         #header .linkbar, #header .linkbar a {
+            font-family: sans;
+            color: #192258;
+            font-size: 1.3em;
+            text-align: center;
+         }
+         #header .linkbar a:hover {
+            color: #4c7b47;
+         }
+         .center {
+            text-align: center;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <div class="span-24" id="header">
+            <div class="center">
+               <img src="/media/logos/logo-nobg.png" alt="eighthbit" />
+            </div>
+            <hr />
+         </div>
+
+         <!-- Top -->
+         <div class="span-6">
+            <form action="/login" method="post">
+               <label for="username">Username</label>
+               <input type="text" name="username" id="username" />
+
+               <label for="password">Password</label>
+               <input type="password" name="password" id="password" />
+
+               <input type="submit" value="Login" />
+            </form>
+         </div>
+
+         <div class="span-12">
+            <h2>Welcome</h2>
+            <p>This content will be generated from some admin-only model.</p>
+         </div>
+
+         <div class="span-6 last">
+            hi
+         </div>
+      </div>
+
+      <div class="container" style="margin-top: 30px;">
+         <!-- Bottom -->
+         <!-- First Column -->
+         <div class="span-7 colborder">
+            <h3>Latest From The <span class="alt">Bit Bin</span></h3>
+            <div class="success">
+               <h6>Title Here</h6>
+               Testing ... 1 2 3 4 5 6
+            </div>
+            <div class="success">
+               <h6>Title Here</h6>
+               Testing ... 1 2 3 4 5 6
+            </div>
+         </div>
+
+         <!-- Second Column -->
+         <div class="span-8 colborder">
+            <h3>New <span class="alt">IRC Funnies</span></h3>
+            <div class="notice">
+               <h6>Title Here</h6>
+               Testing ... 1 2 3 4 5 6
+            </div>
+            <div class="notice">
+               <h6>Title Here</h6>
+               Testing ... 1 2 3 4 5 6
+            </div>
+         </div>
+
+         <div class="span-7 last">
+            <h3>Edits To The <span class="alt">Wiki</span></h3>
+            <div class="error">
+               <h6>Title Here</h6>
+               Testing ... 1 2 3 4 5 6
+            </div>
+            <div class="error">
+               <h6>Title Here</h6>
+               Testing ... 1 2 3 4 5 6
+            </div>
+         </div>
+
+      </div>
+   </body>
+</html>
