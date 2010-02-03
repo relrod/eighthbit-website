@@ -8,6 +8,7 @@ urlpatterns = patterns('',
 
    # Core Site:
    (r'^admin/', include(admin.site.urls)),
+   (r'^front/', "general.views.front"),
 
    # This should be removed for production.
    (r'^media/(?P<path>.*)/$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),

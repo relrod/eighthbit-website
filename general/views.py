@@ -24,7 +24,5 @@ def login(request):
       return False
 
 def front(request):
-   links = Link.objects.all()
-   frontpage = Page.objects.get(title='front')
-   return render_to_response("index.html", {'links':links, 'frontpage':frontpage})
+   return render_to_response("index.html")
 
