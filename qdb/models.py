@@ -6,13 +6,29 @@ class Quote(models.Model):
    contents = models.TextField()
    comment = models.CharField(max_length=200, blank=True, null=False)
    approved = models.BooleanField()
-   votedIPs = models.TextField(default='', blank=True, null=False, editable=False) #This is just a comma seperated list for ow. Subject to change.
+
    def __unicode__(self):
       return "#%s by %s" % (self.id, self.submitter)
 
-   def canvote(self, ip):
-      """Can IP vote? Return true if it can, else false."""
-      if ip in self.votedIPs.split(','):
-         return False
+class Vote(models.Model):
+   ip = models.IPAddressField("IP")
+   quote = models.ForeignKey(Quote) # The quote we're voting on.
+   direction = models.BooleanField() # True = +, False = -
+
+   def save(self, *args, **kwargs):
+      quote = self.quote
+      if self.direction == True:
+         quote.score += 1
       else:
-         return  True
+         quote.score -= 1
+
+      quote.save()
+      super(Vote, self).save(*args, **kwargs)
+
+
+   def __unicode__(self):
+      if self.direction == True:
+         txt_direction = "positive"
+      else:
+         txt_direction = "negative"
+      return "Quote# %s (%s vote from IP %s)" % (self.quote.id, txt_direction, ip)
