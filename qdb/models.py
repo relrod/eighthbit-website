@@ -25,10 +25,14 @@ class Vote(models.Model):
       quote.save()
       super(Vote, self).save(*args, **kwargs)
 
+   def txt_direction(self, symbol=False):
+      if self.direction == True:
+         return "positive" if not symbol else "+"
+      else:
+         return "negative" if not symbol else "-"
+
+   def quoteid(self):
+      return self.quote.id
 
    def __unicode__(self):
-      if self.direction == True:
-         txt_direction = "positive"
-      else:
-         txt_direction = "negative"
-      return "Quote# %s (%s vote from IP %s)" % (self.quote.id, txt_direction, ip)
+      return "Quote# %s (%s vote from IP %s)" % (self.quoteid(), self.txt_direction(), self.ip)
